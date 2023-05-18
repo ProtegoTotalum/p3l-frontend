@@ -68,30 +68,64 @@
                 username: '',
                 usernameRules: [
                     (v) => !!v || 'Username tidak boleh kosong :(',
-                ]
+                ],
+                user:[],
+                role: '',
             };
         },
         methods: {
+            readData() {
+                var url = this.$api + '/user/' + localStorage.getItem('id');
+                this.$http.get(url, {
+                }).then(response => {
+                    this.users = response.data.data;
+                })
+                // axios 
+                // .get("http://127.0.0.1:8000/api/user" ,{
+
+                // }).then(response => {
+                //     user.value = response.data.data
+                //     console.log(user.value)
+                // }).catch(error => {
+                //     console.log(error.response.data)
+                // })
+            },
             submit() {
                 if(this.$refs.form.validate()) {
                     // cek validasi data yang terkirim
                     this.load = true;
-                    if (this.username == "kasir") {
-                        this.$http.post(this.$api + '/login', {
+                    this.$http.post(this.$api + '/login', {
                             username: this.username,
                             password: this.password
                         }).then(response => {
                             localStorage.setItem('id', response.data.user.id);
                             localStorage.setItem('token', response.data.access_token);
+                            localStorage.setItem('role', response.data.user.role);
                             localStorage.setItem("dataPegawai", JSON.stringify(response.data.pegawai));
                             this.error_message = response.data.message;
                             this.color = "green";
                             this.snackbar = true;
                             this.load = false;
                             this.clear();
-                            this.$router.push({
-                                name: 'DashboardKasir',
-                            });
+                            this.role = localStorage.getItem('role');
+                            if(this.role == "kasir") {
+                                this.$router.push({
+                                    name: 'DashboardKasir',
+                                });
+                            }else if (this.role == "mo"){
+                                this.$router.push({
+                                    name: 'DashboardMO',
+                                });
+                            }else if(this.role == "admin"){
+                                this.$router.push({
+                                    name: 'DashboardAdmin',
+                                });
+                            }else{
+                                this.error_message = "Maaf Anda Tidak Memiliki Hak Akses Website Ini"; 
+                                this.color = "red";
+                                this.snackbar = true;
+                                this.load = false;
+                            }
                         }).catch(error => {
                             this.error_message = error.response.data.message;
                             this.color = "red";
@@ -99,61 +133,84 @@
                             localStorage.removeItem('token');
                             this.load = false;
                         })
-                    } else {
-                        if (this.username == "mo") {
-                            this.$http.post(this.$api + '/login', {
-                                username: this.username,
-                                password: this.password
-                            }).then(response => {
-                                localStorage.setItem('id', response.data.user.id);
-                                localStorage.setItem('token', response.data.access_token);
-                                localStorage.setItem("dataPegawai", JSON.stringify(response.data.pegawai));
-                                this.error_message = response.data.message;
-                                this.color = "green";
-                                this.snackbar = true;
-                                this.load = false;
-                                this.clear();
-                                this.$router.push({
-                                    name: 'DashboardMO',
-                                });
-                            }).catch(error => {
-                                this.error_message = error.response.data.message;
-                                this.color = "red";
-                                this.snackbar = true;
-                                localStorage.removeItem('token');
-                                this.load = false;
-                            })
-                        } else {
-                            if (this.username == "admin") {
-                                this.$http.post(this.$api + '/login', {
-                                    username: this.username,
-                                    password: this.password
-                                }).then(response => {
-                                    localStorage.setItem('id', response.data.user.id);
-                                    localStorage.setItem('token', response.data.access_token);
-                                    this.error_message = response.data.message;
-                                    this.color = "green";
-                                    this.snackbar = true;
-                                    this.load = false;
-                                    this.clear();
-                                    this.$router.push({
-                                        name: 'DashboardAdmin',
-                                    });
-                                }).catch(error => {
-                                    this.error_message = error.response.data.message;
-                                    this.color = "red";
-                                    this.snackbar = true;
-                                    localStorage.removeItem('token');
-                                    this.load = false;
-                                })
-                            }else{
-                                this.error_message = "We Are Sorry You Don't Have Permission For Entering This Website"; 
-                                this.color = "red";
-                                this.snackbar = true;
-                                this.load = false;
-                            }
-                        }
-                    }
+                    // if (this.username == "kasir") {
+                    //     this.$http.post(this.$api + '/login', {
+                    //         username: this.username,
+                    //         password: this.password
+                    //     }).then(response => {
+                    //         localStorage.setItem('id', response.data.user.id);
+                    //         localStorage.setItem('token', response.data.access_token);
+                    //         localStorage.setItem("dataPegawai", JSON.stringify(response.data.pegawai));
+                    //         this.error_message = response.data.message;
+                    //         this.color = "green";
+                    //         this.snackbar = true;
+                    //         this.load = false;
+                    //         this.clear();
+                    //         this.$router.push({
+                    //             name: 'DashboardKasir',
+                    //         });
+                    //     }).catch(error => {
+                    //         this.error_message = error.response.data.message;
+                    //         this.color = "red";
+                    //         this.snackbar = true;
+                    //         localStorage.removeItem('token');
+                    //         this.load = false;
+                    //     })
+                    // } else {
+                    //     if (this.username == "mo") {
+                    //         this.$http.post(this.$api + '/login', {
+                    //             username: this.username,
+                    //             password: this.password
+                    //         }).then(response => {
+                    //             localStorage.setItem('id', response.data.user.id);
+                    //             localStorage.setItem('token', response.data.access_token);
+                    //             localStorage.setItem("dataPegawai", JSON.stringify(response.data.pegawai));
+                    //             this.error_message = response.data.message;
+                    //             this.color = "green";
+                    //             this.snackbar = true;
+                    //             this.load = false;
+                    //             this.clear();
+                    //             this.$router.push({
+                    //                 name: 'DashboardMO',
+                    //             });
+                    //         }).catch(error => {
+                    //             this.error_message = error.response.data.message;
+                    //             this.color = "red";
+                    //             this.snackbar = true;
+                    //             localStorage.removeItem('token');
+                    //             this.load = false;
+                    //         })
+                    //     } else {
+                    //         if (this.username == "admin") {
+                    //             this.$http.post(this.$api + '/login', {
+                    //                 username: this.username,
+                    //                 password: this.password
+                    //             }).then(response => {
+                    //                 localStorage.setItem('id', response.data.user.id);
+                    //                 localStorage.setItem('token', response.data.access_token);
+                    //                 this.error_message = response.data.message;
+                    //                 this.color = "green";
+                    //                 this.snackbar = true;
+                    //                 this.load = false;
+                    //                 this.clear();
+                    //                 this.$router.push({
+                    //                     name: 'DashboardAdmin',
+                    //                 });
+                    //             }).catch(error => {
+                    //                 this.error_message = error.response.data.message;
+                    //                 this.color = "red";
+                    //                 this.snackbar = true;
+                    //                 localStorage.removeItem('token');
+                    //                 this.load = false;
+                    //             })
+                    //         }else{
+                    //             this.error_message = "We Are Sorry You Don't Have Permission For Entering This Website"; 
+                    //             this.color = "red";
+                    //             this.snackbar = true;
+                    //             this.load = false;
+                    //         }
+                    //     }
+                    // }
 
                 }
             },
