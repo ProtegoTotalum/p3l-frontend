@@ -76,6 +76,18 @@ const router = new VueRouter({
                     name: "ResetDepositKelas",
                     component: importComponent("ResetDepositKelas")
                 },
+                //Booking Gym
+                {
+                    path: "/bookinggym",
+                    name: "BookingGym",
+                    component: importComponent("BookingGym")
+                },
+                //Booking Gym
+                {
+                    path: "/bookingkelas",
+                    name: "BookingKelas",
+                    component: importComponent("BookingKelas")
+                },
             ],
         },
 

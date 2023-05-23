@@ -53,6 +53,8 @@ export default {
                 { title: 'Transaksi Aktivasi', to: '/transaksiaktivasi'},
                 { title: 'Deaktivasi Member', to: '/deaktivasimember'},
                 { title: 'Reset Deposit Kelas', to: '/resetdepositkelas'},
+                { title: 'Booking Gym', to: '/bookinggym'},
+                { title: 'Booking Kelas', to: '/bookingkelas'},
                 { title: 'User', to: '/user'}
             ],
         };

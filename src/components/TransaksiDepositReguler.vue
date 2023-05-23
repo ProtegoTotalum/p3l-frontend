@@ -286,7 +286,7 @@ export default {
             });
             doc.html(elementHTML, {
             callback: function (doc) {
-                doc.save('struk.pdf');
+                doc.save('Struk Transaksi Deposit Reguler.pdf');
                 elementHTML.style.display = "none";
             },
             x: 10,
