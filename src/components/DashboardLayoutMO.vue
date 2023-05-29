@@ -48,6 +48,9 @@ export default {
                 { title: 'Jadwal Umum', to: '/jadwalumum'},
                 { title: 'Jadwal Harian', to: '/jadwalharian'},
                 { title: 'Ijin Instruktur', to: '/ijin'},
+                { title: 'Aktivitas Gym Bulanan', to: '/laporanaktivitasgym'},
+                { title: 'Aktivitas Kelas Bulanan', to: '/laporanaktivitaskelas'},
+                { title: 'Aktivitas Kinerja Instruktur Bulanan', to: '/laporankinerjainstruktur'},
                 { title: 'User', to: '/user'}
             ],
         };

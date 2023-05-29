@@ -115,6 +115,24 @@ const router = new VueRouter({
                 name: "Ijin Instruktur",
                 component: importComponent("IjinInstruktur")
                 },
+                //LaporanAktivitasGymBulanan
+                {
+                path: "/laporanaktivitasgym",
+                name: "Laporan Aktivitas Gym",
+                component: importComponent("LaporanAktivitasGym")
+                },
+                //LaporanAktivitasKelasBulanan
+                {
+                path: "/laporanaktivitaskelas",
+                name: "Laporan Aktivitas Kelas",
+                component: importComponent("LaporanAktivitasKelas")
+                },
+                //LaporanKinerjaInstruktur
+                {
+                path: "/laporankinerjainstruktur",
+                name: "Laporan Kinerja Instruktur",
+                component: importComponent("LaporanKinerjaInstruktur")
+                },
             ],
         },
 
