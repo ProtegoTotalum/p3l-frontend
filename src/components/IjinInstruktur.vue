@@ -18,13 +18,14 @@
                   style="margin-top: 30px"
                 ></v-text-field>
                 <v-spacer></v-spacer>
+                <v-switch v-model="filterOn" label="Filter"></v-switch>
             </v-card-title>
         </v-card>
         <v-card>
-            <v-data-table :headers="headers" :items="ijins" :search="search">
+            <v-data-table :headers="headers" :items="filteredItems" :search="search">
               <template v-slot:[`item.actions`]="{ item }">
-                <v-btn small class="blue darken" @click="updateItem(item)" v-if="item.status_konfirmasi=='Belum Dikonfirmasi'"> Confirm </v-btn>
-                <v-btn small class="red darken" @click="rejectItem(item)" v-if="item.status_konfirmasi=='Belum Dikonfirmasi'"> Reject </v-btn>
+                <v-btn small class="blue darken" @click="updateItem(item)" v-if=" item.status_konfirmasi=='Belum Dikonfirmasi'"> Confirm </v-btn>
+                <v-btn small class="red darken" @click="rejectItem(item)" v-if=" item.status_konfirmasi=='Belum Dikonfirmasi'"> Reject </v-btn>
               </template>
             </v-data-table>
         </v-card>
@@ -65,6 +66,7 @@ export default {
     data() {
         return{
             search: null,
+            filterOn: false,
             dialog: false,
             dialogConfirm: false,
             dialogReject: false,
@@ -182,11 +184,21 @@ export default {
         closeReject(){
             this.dialogReject = false;
         },
+        applyFilter() {
+            this.filterOn = !this.filterOn;
+        },
     },
 
     computed: {
         formTitle() {
             return this.inputType;
+        },
+        filteredItems() {
+            if (this.filterOn) {
+            return this.ijins.filter(item => item.status_konfirmasi === 'Belum Dikonfirmasi');
+            } else {
+            return this.ijins;
+            }
         },
     },
 

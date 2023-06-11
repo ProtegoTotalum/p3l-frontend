@@ -5,7 +5,7 @@
                 <v-list-item-content>
                     <!-- <v-list-item-title class="title"> <v-icon color="black">mdi-account</v-icon> GOFIT </v-list-item-title> -->
                     <v-list-item-title class="title"> GOFIT </v-list-item-title>
-                    <v-list-item-subtitle > Welcome! {{ users.username }} </v-list-item-subtitle>
+                    <v-list-item-subtitle > Welcome {{ users.name }} !!!</v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
 
@@ -49,8 +49,9 @@ export default {
             drawer: true, 
             items: [
                 { title: 'Member', to: '/member'},
-                { title: 'Transaksi Deposit Reguler', to: '/transaksidepositreguler'},
                 { title: 'Transaksi Aktivasi', to: '/transaksiaktivasi'},
+                { title: 'Transaksi Deposit Reguler', to: '/transaksidepositreguler'},
+                { title: 'Transaksi Deposit Kelas Paket', to: '/transaksidepositkelaspaket'},
                 { title: 'Deaktivasi Member', to: '/deaktivasimember'},
                 { title: 'Reset Deposit Kelas', to: '/resetdepositkelas'},
                 { title: 'Booking Gym', to: '/bookinggym'},

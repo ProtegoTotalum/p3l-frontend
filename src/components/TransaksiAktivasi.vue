@@ -33,14 +33,19 @@
             </v-card-title>
             <v-card-text>
                 <v-container>
-                    <v-select
+                    <v-text-field
+                      v-model="users.name"
+                      label="Nama Pegawai"
+                      readonly
+                    ></v-text-field>
+                    <!-- <v-select
                       v-model="form.id_pegawai"
                       label="Nama Pegawai"
                       :items="pegawais"
                       item-text="nama_pegawai"
                       item-value="id"
                       required 
-                    ></v-select>
+                    ></v-select> -->
                     <v-select
                         v-model="form.id_member"
                         label="Nomor Member"
@@ -152,6 +157,9 @@ export default {
                     value: "nomor_struk_transaksi_aktivasi",
                 },
                 { text: "Nama Member", value: "member.nama_member" },
+                { text: "Nomor Member", value: "member.nomor_member" },
+                { text: "Masa Berlaku Member", value: "member.masa_berlaku_member" },
+                { text: "Status Member", value: "member.status_member" },
                 { text: "Tanggal Transaksi", value: "tanggal_transaksi_aktivasi"},
 
             ],
@@ -159,6 +167,7 @@ export default {
             aktivasis: [],
             members: [],
             promos: [],
+            users: null,
             pegawais:[],
             hasil : ref({
                 transaksi_aktivasi : {},
@@ -207,10 +216,17 @@ export default {
                 this.members = response.data.data;
             })
         },
+        getDataUser() {
+            var url = this.$api + '/user/' + localStorage.getItem('id');
+            this.$http.get(url, {
+            }).then(response => {
+                this.users = response.data.data;
+            })
+        },
         save(){
             this.load = true;
             this.$http.post(this.$api + '/transaksiaktivasi', {
-                id_pegawai : this.form.id_pegawai,
+                id_pegawai : this.users.id_user_login,
                 id_member : this.form.id_member,
                 nominal_transaksi_aktivasi : this.form.nominal_transaksi_aktivasi,
             }).then(response => {
@@ -290,6 +306,7 @@ export default {
     mounted() {
         this.readData();
         this.getDataMember();
+        this.getDataUser();
         this.getDataPegawai();
         this.idUser = localStorage.getItem('id');
     },

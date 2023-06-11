@@ -4,7 +4,7 @@
             <v-list-item>
                 <v-list-item-avatar color="grey"></v-list-item-avatar>
                 <v-list-item-content>
-                    <v-list-item-title class="headline">Transaksi Deposit Reguler</v-list-item-title>
+                    <v-list-item-title class="headline">Booking Gym</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
             <v-card-title>
@@ -171,6 +171,7 @@ export default {
                 { text: "Tanggal Gym", value: "tanggal_pelaksanaan_gym"},
                 { text: "Sesi Gym", value: "jam_sesi_booking_gym" },
                 { text: "Jam Presensi Member Gym", value: "jam_presensi_gym" },
+                { text: "Status Presensi Member Gym", value: "status_presensi_gym" },
                 { text: "Action", value: "actions" },
             ],
             bookinggym: new FormData,

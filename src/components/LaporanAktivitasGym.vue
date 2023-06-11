@@ -211,7 +211,7 @@
             let doc = new jsPDF({
                 orientation: 'l', // orientasi landscape
                 unit: 'mm', // satuan millimeter
-                format: ['300','100'], // ukuran kertas A4
+                format: ['300','200'], // ukuran kertas A4
             });
             doc.html(elementHTML, {
             callback: function (doc) {

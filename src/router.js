@@ -52,17 +52,23 @@ const router = new VueRouter({
                     name: "Member",
                     component: importComponent("Member")
                 },
+                //Transaksi Aktivasi
+                {
+                    path: "/transaksiaktivasi",
+                    name: "TransaksiAktivasi",
+                    component: importComponent("TransaksiAktivasi")
+                },
                 //Transaksi Deposit Reguler
                 {
                     path: "/transaksidepositreguler",
                     name: "TransaksiDepositReguler",
                     component: importComponent("TransaksiDepositReguler")
                 },
-                //Transaksi Aktivasi
+                //Transaksi Deposit Kelas Paket
                 {
-                    path: "/transaksiaktivasi",
-                    name: "TransaksiAktivasi",
-                    component: importComponent("TransaksiAktivasi")
+                    path: "/transaksidepositkelaspaket",
+                    name: "TransaksiDepositKelasPaket",
+                    component: importComponent("TransaksiDepositKelasPaket")
                 },
                 //Deaktivasi Member
                 {

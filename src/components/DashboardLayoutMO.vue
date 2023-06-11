@@ -5,7 +5,7 @@
                 <v-list-item-content>
                     <!-- <v-list-item-title class="title"> <v-icon color="black">mdi-account</v-icon> {{users.username}} </v-list-item-title> -->
                     <v-list-item-title class="title"> GOFIT </v-list-item-title>
-                    <v-list-item-subtitle > Welcome! </v-list-item-subtitle>
+                    <v-list-item-subtitle > Welcome {{ users.name }} !!!</v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
 
