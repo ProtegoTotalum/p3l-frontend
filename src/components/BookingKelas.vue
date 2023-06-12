@@ -323,7 +323,6 @@ export default {
         //     }
         // },
         cetakStrukPresensiKelasReguler() {
-            console.log('cetak struk')
             // window.jsPDF = window.jspdf.jsPDF;
             var elementHTML = document.querySelector('#printreguler');
             elementHTML.style.display = "block";
@@ -350,7 +349,6 @@ export default {
             console.log('akhir dari cetak pdf')
         },
         cetakStrukPresensiKelasDeposit() {
-            console.log('cetak struk')
             // window.jsPDF = window.jspdf.jsPDF;
             var elementHTML = document.querySelector('#printtarget');
             elementHTML.style.display = "block";

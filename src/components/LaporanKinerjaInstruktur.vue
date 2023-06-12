@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                 <td>
-                    Bulan: Mei Tahun: 2023
+                    Bulan: Juni Tahun: 2023
                 </td>
                 </tr>
                 <tr>
